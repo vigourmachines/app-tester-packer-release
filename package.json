@@ -49,8 +49,7 @@
             "assets": {
                 "build.html": true,
                 "build.js": true,
-                "build.css": true,
-                "src": "*"
+                "build.css": true
             }
         },
         "native": {
