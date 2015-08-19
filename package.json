@@ -1,0 +1,68 @@
+{
+    "name": "app-tester",
+    "version": "1.0.0",
+    "description": "Page + build for testing (on native)",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "./node_modules/.bin/gaston build; ./node_modules/.bin/vNative build",
+        "ios": "./node_modules/.bin/gaston build; ./node_modules/.bin/vNative build -p ios",
+        "android": "./node_modules/.bin/gaston build; ./node_modules/.bin/vNative build -p android",
+        "release": "packer -r -c package.json,.package.json"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vigour-io/app-tester.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/vigour-io/app-tester/issues"
+    },
+    "homepage": "https://github.com/vigour-io/app-tester#readme",
+    "devDependencies": {
+        "vigour-packer-server": "git+ssh://git@github.com:vigour-io/vigour-packer-server.git",
+        "vigour-native": "git+ssh://git@github.com:vigour-io/vigour-native.git",
+        "gaston": "git+ssh://git@github.com:vigour-io/gaston.git#dev"
+    },
+    "gaston": {
+        "port": 8080,
+        "socket-port": 9000,
+        "no-auto-reload": false,
+        "no-package": false,
+        "bundle": "./",
+        "build": "./",
+        "browserify": {
+            "transforms": []
+        },
+        "less": {
+            "options": {}
+        },
+        "smaps": "true",
+        "source-maps": true,
+        "remote-logging": false,
+        "require-paths": {}
+    },
+    "vigour": {
+        "packer": {
+            "web": "build.html",
+            "assets": {
+                "build.html": true,
+                "build.js": true,
+                "build.css": true,
+                "src": "*"
+            }
+        },
+        "native": {
+            "platforms": {
+                "ios": {
+                    "productName": "App Tester",
+                    "organizationName": "Vigour",
+                    "organizationIdentifier": "io.vigour.app-tester",
+                    "buildNumber": "1",
+                    "appIndexPath": "build.html"
+                }
+            }
+        }
+    }
+}
